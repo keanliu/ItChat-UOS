@@ -15,6 +15,12 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import datetime
 import time
 
+temp_dir = Path(__file__).resolve().parent
+temp_dir = Path(temp_dir).resolve().parent
+sys.path.append(os.path.join(temp_dir, 'python_tools'))
+import aoti.aoti_place_order_unified 
+
+
 home_dir = Path.home()
 
 size_handler = RotatingFileHandler(
@@ -95,14 +101,16 @@ def is_valid_time():
         return True    
     return False
 
-
 def check_available_court():
     logging.info("Enter check_available_court--")   
     logging.info("is it time? %s" % str(is_valid_time())) 
+    result = aoti.aoti_place_order_unified.get_court_book_info(aoti.aoti_place_order_unified.kean_dic, aoti.aoti_place_order_unified.target_date)
+    for i in result:
+        print(i)
 
 scheduler = BackgroundScheduler()
 scheduler.remove_all_jobs() 
-scheduler.add_job(check_available_court, 'interval', seconds=20)
+scheduler.add_job(check_available_court, 'interval', seconds=600)
 
 try:
     scheduler.start()
