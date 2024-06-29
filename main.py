@@ -42,7 +42,7 @@ logger.setLevel(logging.INFO)
 
 @itchat.msg_register('Text')
 def text_reply(msg):
-    logging.info(json.dumps(msg, ensure_ascii=False, indent=4)) 
+    # logging.info(json.dumps(msg, ensure_ascii=False, indent=4)) 
     logging.info("Got a message, from:%s; message: %s" % (msg['User']['NickName'], msg['Text'])) 
     # return u'收到：' + msg['Text'] +  "; /r/n/r/n目前不在线，回头答复您"
 
