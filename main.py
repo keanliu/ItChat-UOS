@@ -131,7 +131,7 @@ def check_available_court():
 # scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 300})
 scheduler = BackgroundScheduler()
 scheduler.remove_all_jobs() 
-scheduler.add_job(check_available_court, 'interval', seconds=20, max_instances=2)
+scheduler.add_job(check_available_court, 'interval', seconds=60, max_instances=2)
 # scheduler.add_job(check_available_court, 'interval', seconds=120)
 
 try:
