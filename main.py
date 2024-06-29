@@ -106,22 +106,22 @@ def is_valid_time():
 def check_available_court():
     logging.info("Enter check_available_court--")   
     logging.info("is it time? %s" % str(is_valid_time())) 
-    result = aoti.aoti_place_order_unified.get_court_book_info(aoti.aoti_place_order_unified.kean_dic, aoti.aoti_place_order_unified.target_date)
-    if result:
-        msg_text = ''
-        for court, time_info in result:
-            msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
-        logging.info(msg_text)
-        to_user = '@e0bfaae9860606cacb2db54737953ee34dd6c66329014a9ec63a3b7384c69a20' # 又胖又能吃群
-        to_user = "@@44c1b8fd4cb16cea6836384ca89fbacae12d60cd9dffd842d8f86cd4996f3362" # 奥体羽毛球群
-        msg_text = '牛气！'
-        itchat.send_msg(to_user,  msg_text)
+    # result = aoti.aoti_place_order_unified.get_court_book_info(aoti.aoti_place_order_unified.kean_dic, aoti.aoti_place_order_unified.target_date)
+    # if result:
+    #     msg_text = ''
+    #     for court, time_info in result:
+    #         msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
+    #     logging.info(msg_text)
+    to_user = '@e0bfaae9860606cacb2db54737953ee34dd6c66329014a9ec63a3b7384c69a20' # 又胖又能吃群
+    to_user = "@@44c1b8fd4cb16cea6836384ca89fbacae12d60cd9dffd842d8f86cd4996f3362" # 奥体羽毛球群
+    msg_text = '牛气！'
+    itchat.send_msg(to_user,  msg_text)
 
 # scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 300})
 scheduler = BackgroundScheduler()
 scheduler.remove_all_jobs() 
 # scheduler.add_job(runsync, 'interval', seconds=1, max_instances=2)
-scheduler.add_job(check_available_court, 'interval', seconds=600)
+scheduler.add_job(check_available_court, 'interval', seconds=120)
 
 try:
     scheduler.start()
