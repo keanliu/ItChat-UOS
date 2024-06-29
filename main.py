@@ -106,23 +106,24 @@ def is_valid_time():
 def check_available_court():
     logging.info("Enter check_available_court--")   
     logging.info("is it time? %s" % str(is_valid_time())) 
+    if not is_valid_time():
+        logging.info("Not time, do nothing")
+        return
     result = aoti.aoti_place_order_unified.get_court_book_info(aoti.aoti_place_order_unified.kean_dic, aoti.aoti_place_order_unified.target_date)
     if result:
         msg_text = ''
         for court, time_info in result:
             msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
         logging.info(msg_text)
+        group = itchat.search_chatrooms(name='🇨🇳2024河西奥体🏸 裙')  # Replace 'group_name' with the actual group name
+        logging.info(group)
+        # Check if the group was found
+        if group:
+            group_id = group[0]['UserName']  # Get the unique identifier for the group
+            logging.info(group_id)
+            message = msg_text  # Your message
+            itchat.send(message, toUserName=group_id)
 
-    msg_text = '向你学习'
-    group = itchat.search_chatrooms(name='🇨🇳2024河西奥体🏸 裙')  # Replace 'group_name' with the actual group name
-    logging.info(group)
-    # Check if the group was found
-    if group:
-        group_id = group[0]['UserName']  # Get the unique identifier for the group
-        logging.info(group_id)
-        message = msg_text  # Your message
-        itchat.send(message, toUserName=group_id)
-    logging.info('Going to send message')
 
 
 # scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 300})
