@@ -111,10 +111,14 @@ def check_available_court():
             msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
         logging.info(msg_text)
         
+import apscheduler.schedulers.background
 
-scheduler = BackgroundScheduler()
+scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 300})
+# scheduler = BackgroundScheduler()
 scheduler.remove_all_jobs() 
 scheduler.add_job(check_available_court, 'interval', seconds=600)
+scheduler.add_job()
+
 
 try:
     scheduler.start()
