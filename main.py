@@ -3,6 +3,7 @@
 import itchat
 # tuling plugin can be get here:
 # https://github.com/littlecodersh/EasierLife/tree/master/Plugins/Tuling
+# nohup python3 -m jurigged -v main.py &
 from tuling import get_response
 import sys
 import logging
@@ -115,8 +116,6 @@ scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 300})
 # scheduler = BackgroundScheduler()
 scheduler.remove_all_jobs() 
 scheduler.add_job(check_available_court, 'interval', seconds=600)
-scheduler.add_job()
-
 
 try:
     scheduler.start()
