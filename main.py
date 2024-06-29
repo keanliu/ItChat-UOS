@@ -110,8 +110,6 @@ def check_available_court():
         for court, time_info in result:
             msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
         logging.info(msg_text)
-        
-import apscheduler.schedulers.background
 
 scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 300})
 # scheduler = BackgroundScheduler()
