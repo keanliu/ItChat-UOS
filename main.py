@@ -105,8 +105,12 @@ def check_available_court():
     logging.info("Enter check_available_court--")   
     logging.info("is it time? %s" % str(is_valid_time())) 
     result = aoti.aoti_place_order_unified.get_court_book_info(aoti.aoti_place_order_unified.kean_dic, aoti.aoti_place_order_unified.target_date)
-    for i in result:
-        print(i)
+    if result:
+        msg_text = ''
+        for court, time_info in result:
+            msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
+        logging.info(msg_text)
+        
 
 scheduler = BackgroundScheduler()
 scheduler.remove_all_jobs() 
