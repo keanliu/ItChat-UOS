@@ -69,7 +69,7 @@ def group_reply(msg):
     # logging.info('Got a message, from: group %s; user%s; content: %s' % (msg['User']['NickName'], msg['ActualNickName'], msg['Text']))
     # logging.info(json.dumps(msg, ensure_ascii=False, indent=4))
     if msg['isAt']:
-        return
+        # return
         return u'@%s\u2005%s' % (msg['ActualNickName'], u'收到：' + msg['Text'] + "; 我不在线，回头答复您")
 
 # @itchat.msg_register('Friends')
