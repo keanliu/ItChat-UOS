@@ -115,12 +115,13 @@ def check_available_court():
     to_user = '@e0bfaae9860606cacb2db54737953ee34dd6c66329014a9ec63a3b7384c69a20' # 又胖又能吃群
     to_user = "@@44c1b8fd4cb16cea6836384ca89fbacae12d60cd9dffd842d8f86cd4996f3362" # 奥体羽毛球群
     msg_text = '牛气！'
+    logging.info('Going to send message')
     itchat.send_msg(to_user,  msg_text)
 
 # scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 300})
 scheduler = BackgroundScheduler()
 scheduler.remove_all_jobs() 
-scheduler.add_job(check_available_court, 'interval', seconds=120, max_instances=2)
+scheduler.add_job(check_available_court, 'interval', seconds=20, max_instances=2)
 # scheduler.add_job(check_available_court, 'interval', seconds=120)
 
 try:
