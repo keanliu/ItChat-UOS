@@ -1,3 +1,5 @@
 requests
 pyqrcode
 pypng
+jurigged[develoop]
+apscheduler
