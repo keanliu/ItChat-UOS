@@ -115,6 +115,16 @@ def check_available_court():
     to_user = '@e0bfaae9860606cacb2db54737953ee34dd6c66329014a9ec63a3b7384c69a20' # 又胖又能吃群
     to_user = "@@44c1b8fd4cb16cea6836384ca89fbacae12d60cd9dffd842d8f86cd4996f3362" # 奥体羽毛球群
     msg_text = '牛气！'
+    group = itchat.search_chatrooms(name='又胖又能吃')  # Replace 'group_name' with the actual group name
+    logging.info(group)
+
+    # Check if the group was found
+    if group:
+        group_id = group[0]['UserName']  # Get the unique identifier for the group
+        logging.info(group_id)
+        message = "Hello group from itchat!"  # Your message
+        itchat.send(message, toUserName=group_id)
+
     logging.info('Going to send message')
     itchat.send_msg(to_user,  msg_text)
 
