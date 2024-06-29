@@ -69,6 +69,7 @@ def group_reply(msg):
     # logging.info('Got a message, from: group %s; user%s; content: %s' % (msg['User']['NickName'], msg['ActualNickName'], msg['Text']))
     logging.info(json.dumps(msg, ensure_ascii=False, indent=4))
     if msg['isAt']:
+        return
         return u'@%s\u2005%s' % (msg['ActualNickName'], u'收到：' + msg['Text'] + "; 我不在线，回头答复您")
 
 # @itchat.msg_register('Friends')
@@ -111,6 +112,9 @@ def check_available_court():
         for court, time_info in result:
             msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
         logging.info(msg_text)
+    to_user = '@e0bfaae9860606cacb2db54737953ee34dd6c66329014a9ec63a3b7384c69a20' # 又胖又能吃群
+    # to_user = "@@44c1b8fd4cb16cea6836384ca89fbacae12d60cd9dffd842d8f86cd4996f3362" # 奥体羽毛球群
+    itchat.send_msg(to_user， msg_text)
 
 scheduler = BackgroundScheduler({'apscheduler.job_defaults.max_instances': 300})
 # scheduler = BackgroundScheduler()
