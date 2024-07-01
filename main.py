@@ -82,7 +82,8 @@ def group_reply(msg):
 
 itchat.auto_login(hotReload=True, enableCmdQR=2)
 itchat.run(blockThread=False)
-itchat.send('Hello, please rememver this', toUserName='filehelper')
+
+itchat.send('UOS desktop online', toUserName='filehelper')
 
 
 def is_valid_time():
@@ -114,9 +115,10 @@ def check_available_court():
     if result:
         msg_text = ''
         for court, time_info in result:
-            msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
+            msg_text = msg_text + court[1][1] + time_info['v'] + '--'
         logging.info(msg_text)
-        group = itchat.search_chatrooms(name='🇨🇳2024河西奥体🏸 裙')  # Replace 'group_name' with the actual group name
+        # group = itchat.search_chatrooms(name='🇨🇳2024河西奥体🏸 裙')  # Replace 'group_name' with the actual group name
+        group = itchat.search_chatrooms(name='zaof')
         # logging.info(group)
         # Check if the group was found
         if group:
