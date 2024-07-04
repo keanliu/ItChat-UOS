@@ -68,6 +68,7 @@ def group_reply(msg):
     # logging.info( os.environ.get('ITCHAT_UOS_ASYNC', False))
     logging.info('Got a message, from: group %s; user%s; content: %s' % (msg['User']['NickName'], msg['ActualNickName'], msg['Text']))
     # logging.info(json.dumps(msg, ensure_ascii=False, indent=4))
+    return
     if msg['isAt']:
         # return
         return u'@%s\u2005%s' % (msg['ActualNickName'], u'收到：' + msg['Text'] + "; 我不在线，回头答复您")
@@ -109,20 +110,24 @@ def check_available_court():
     if not is_valid_time():
         logging.info("Not time, do nothing")
         return
-    result = aoti.aoti_place_order_unified.get_court_book_info(aoti.aoti_place_order_unified.kean_dic, aoti.aoti_place_order_unified.target_date)
+    result = aoti.aoti_place_order_unified.get_court_book_info(aoti.aoti_place_order_unified.kean_dic, aoti.aoti_place_order_unified.get_target_date())
     if result:
         msg_text = ''
         for court, time_info in result:
-            msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
+            msg_text = msg_text + court[1][1] + time_info['v'] + '\r\n'
         logging.info(msg_text)
-        group = itchat.search_chatrooms(name='🇨🇳2024河西奥体🏸 裙')  # Replace 'group_name' with the actual group name
-        logging.info(group)
-        # Check if the group was found
-        if group:
-            group_id = group[0]['UserName']  # Get the unique identifier for the group
-            logging.info(group_id)
-            message = msg_text  # Your message
-            itchat.send(message, toUserName=group_id)
+        if msg_text:
+            itchat.send(msg_text, toUserName='filehelper')
+        # group = itchat.search_chatrooms(name='🇨🇳2024河西奥体🏸 裙')  # Replace 'group_name' with the actual group name
+        # logging.info(group)
+        # # Check if the group was found
+        # if group:
+        #     group_id = group[0]['UserName']  # Get the unique identifier for the group
+        #     logging.info(group_id)
+        #     message = msg_text  # Your message
+        #     if message:
+        #         message = "奥体有场地： " + message
+        #         itchat.send(message, toUserName=group_id)
 
 
 
