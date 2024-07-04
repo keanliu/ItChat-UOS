@@ -82,7 +82,7 @@ def group_reply(msg):
 
 itchat.auto_login(hotReload=True, enableCmdQR=2)
 itchat.run(blockThread=False)
-itchat.send('Hello, please rememver this', toUserName='filehelper')
+itchat.send('UOS version online', toUserName='filehelper')
 
 
 def is_valid_time():
@@ -105,6 +105,7 @@ def is_valid_time():
     return False
 
 def check_available_court():
+    # check if can fast forward
     logging.info("Enter check_available_court--")   
     logging.info("is it time? %s" % str(is_valid_time())) 
     if not is_valid_time():
