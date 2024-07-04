@@ -82,7 +82,8 @@ def group_reply(msg):
 
 itchat.auto_login(hotReload=True, enableCmdQR=2)
 itchat.run(blockThread=False)
-itchat.send('UOS version online', toUserName='filehelper')
+
+itchat.send('UOS desktop online', toUserName='filehelper')
 
 
 def is_valid_time():
@@ -115,10 +116,11 @@ def check_available_court():
     if result:
         msg_text = ''
         for court, time_info in result:
-            msg_text = msg_text + court[1][1] + time_info['v'] + '\r\n'
+            msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
         logging.info(msg_text)
         if msg_text:
             itchat.send(msg_text, toUserName='filehelper')
+
         # group = itchat.search_chatrooms(name='🇨🇳2024河西奥体🏸 裙')  # Replace 'group_name' with the actual group name
         # logging.info(group)
         # # Check if the group was found
@@ -126,9 +128,7 @@ def check_available_court():
         #     group_id = group[0]['UserName']  # Get the unique identifier for the group
         #     logging.info(group_id)
         #     message = msg_text  # Your message
-        #     if message:
-        #         message = "奥体有场地： " + message
-        #         itchat.send(message, toUserName=group_id)
+        #     itchat.send(message, toUserName=group_id)
 
 
 
