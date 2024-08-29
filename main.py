@@ -119,7 +119,10 @@ def check_available_court():
             msg_text = msg_text + court[1][1] + time_info['v'] + '/r/n'
         logging.info(msg_text)
         if msg_text:
+            logging.info("Will send message to filehelper")
             itchat.send(msg_text, toUserName='filehelper')
+        else:
+            logging.info("No available court")
 
         # group = itchat.search_chatrooms(name='🇨🇳2024河西奥体🏸 裙')  # Replace 'group_name' with the actual group name
         # logging.info(group)
